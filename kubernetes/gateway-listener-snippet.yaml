@@ -1,0 +1,15 @@
+# Não é um manifest aplicável sozinho.
+# Acrescente este bloco em spec.listeners do Gateway existente:
+#   kubectl edit gateway main-gateway -n nginx-gateway
+- name: https-example-app
+  port: 443
+  protocol: HTTPS
+  hostname: example-app.atena.io
+  allowedRoutes:
+    namespaces:
+      from: All
+  tls:
+    mode: Terminate
+    certificateRefs:
+      - kind: Secret
+        name: example-app-tls

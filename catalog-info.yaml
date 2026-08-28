@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-app
+  description: Aplicação de exemplo para testar recursos do Backstage
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: example-app
+  tags:
+    - example
+    - nodejs
+spec:
+  type: service
+  lifecycle: experimental
+  owner: guests
+  system: example-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: example-system
+  description: Sistema de exemplo agrupando componentes de teste do Backstage
+spec:
+  owner: guests

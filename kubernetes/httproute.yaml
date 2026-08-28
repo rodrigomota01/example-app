@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: example-app
+  namespace: example-app
+spec:
+  hostnames:
+    - example-app.atena.io
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: main-gateway
+      namespace: nginx-gateway
+      sectionName: http
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: main-gateway
+      namespace: nginx-gateway
+      sectionName: https-example-app
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: example-app
+          port: 80
